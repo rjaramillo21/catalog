@@ -1,0 +1,10 @@
+<div class="span12">
+	<div class="btn-group">
+		<button class="btn btn-large btn-info">Menu</button>
+		<button class="btn btn-large btn-info dropdown-toggle" data-toggle="dropdown" href="#">
+	  		<span class="caret"></span>
+	  	</button>
+	  	<ul class="dropdown-menu" ng-controller="TopicsController">
+    		<li ng-repeat="section in sections"><a href="#{{ section.link }}">{{ section.title }}</li> 
+  		</ul>
+</div>

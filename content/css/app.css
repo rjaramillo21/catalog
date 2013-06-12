@@ -1,0 +1,61 @@
+body{
+	width: 100%;
+	overflow: hidden;
+}
+
+li{
+	list-style: none;
+}
+
+#hd{
+	height: 50px;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #3D3D3D;
+	padding: 10px;
+
+	/* IE10 Consumer Preview */ 
+	background-image: -ms-linear-gradient(top, #3D3D3D 0%, #171515 100%);
+	/* Mozilla Firefox */ 
+	background-image: -moz-linear-gradient(top, #3D3D3D 0%, #171515 100%);
+	/* Opera */ 
+	background-image: -o-linear-gradient(top, #3D3D3D 0%, #171515 100%);
+	/* Webkit (Safari/Chrome 10) */ 
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #3D3D3D), color-stop(1, #171515));
+	/* Webkit (Chrome 11+) */ 
+	background-image: -webkit-linear-gradient(top, #3D3D3D 0%, #171515 100%);
+	/* W3C Markup, IE10 Release Preview */ 
+	background-image: linear-gradient(to bottom, #3D3D3D 0%, #171515 100%); 
+}
+
+#bd{
+	min-height: 500px;
+	background-color: #fff;
+	min-height: 600px;
+}
+
+#ft{
+	background-color: #333;
+	border-top-width: 5px;
+	border-top-style: solid;
+	border-top-color: #4f4f4f;
+	position: absolute;
+	bottom: 0;
+}
+
+#ft li{
+	color: #999;
+	float: left;
+	margin-left: 25px;
+	margin-right: 25px; 
+	padding-bottom: 10px;
+}
+
+#ft li a{
+	color: #999;
+	text-decoration: none;
+}
+
+#ft li a:hover{
+	color: #fff;
+}

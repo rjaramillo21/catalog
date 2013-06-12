@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="catalogApp">
+<head>
+    <title>Catalog</title>
+    <link href="content/css/app.css" rel="stylesheet" />
+    <link href="content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="content/css/bootstrap-responsive.min.css" rel="stylesheet" />
+    <link href="content/css/carousel.css" rel="stylesheet" />
+</head>
+<body>
+  <div id="hd" class="row-fluid">
+    <div ng-include src="'app/partials/header.html'"></div>
+  </div>
+
+  <div id="bd" class="row-fluid">
+    <!-- Views Place Holder -->
+    <div ng-view=""></div>
+  </div>
+
+  <div id="ft" class="row-fluid">
+    <div ng-include src="'app/partials/footer.html'"></div>
+  </div>
+  
+  <!-- Vendor Libs: jQuery only used for Bootstrap functionality -->
+  <script src="scripts/angular.min.js"></script>
+  <script src="scripts/jquery.min.js"></script>
+
+  <!-- UI Libs -->
+  <script src="scripts/bootstrap.min.js"></script>
+
+  <!-- App libs -->
+  <script src="app/app.js"></script>
+  <script src="app/controllers/topicsController.js"></script>
+  <script src="app/controllers/skillsController.js"></script>
+  <script src="app/controllers/footerController.js"></script>
+
+</body>
+</html>

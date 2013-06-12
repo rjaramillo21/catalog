@@ -1,0 +1,13 @@
+<div ng-include src="'app/partials/carousel.html'"></div> 
+
+<div class="container-fluid">
+	<div class="row-fluid">
+		<ul class="span11 offset1">
+		  <li ng-repeat="section in sections">
+			<i class="icon-chevron-right"></i>
+		  	<a ng-href="#{{ section.link }}">{{ section.title }}</a>
+		  </li> 
+		</ul>
+	</div>
+</div>
+
