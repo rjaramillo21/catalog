@@ -6,6 +6,7 @@
     <link href="content/css/bootstrap.min.css" rel="stylesheet" />
     <link href="content/css/bootstrap-responsive.min.css" rel="stylesheet" />
     <link href="content/css/carousel.css" rel="stylesheet" />
+    <link href="content/css/jarvis.css" rel="stylesheet" />
 </head>
 <body>
   <div id="hd" class="row-fluid">
@@ -15,6 +16,9 @@
   <div id="bd" class="row-fluid">
     <!-- Views Place Holder -->
     <div ng-view=""></div>
+    <div ng-controller="JarvisController">
+      <jarvis init="true"></jarvis>
+    <div>
   </div>
 
   <div id="ft" class="row-fluid">
@@ -28,11 +32,17 @@
   <!-- UI Libs -->
   <script src="scripts/bootstrap.min.js"></script>
 
+  <!-- JS libs-->
+  <script src="scripts/jarvis.js"></script>
+
   <!-- App libs -->
   <script src="app/app.js"></script>
-  <script src="app/controllers/topicsController.js"></script>
-  <script src="app/controllers/skillsController.js"></script>
+  <script src="app/directives/custom.js"></script>
+  <script src="app/directives/jarvisDirective.js"></script>
   <script src="app/controllers/footerController.js"></script>
+  <script src="app/controllers/jarvisController.js"></script>
+  <script src="app/controllers/skillsController.js"></script>
+  <script src="app/controllers/topicsController.js"></script>
 
 </body>
 </html>
