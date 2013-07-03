@@ -3,8 +3,9 @@ app.directive('jarvis', function(){
     restrict: 'E',
     templateUrl: 'app/partials/jarvis/jarvis.html',
     link: function (scope, element, attrs){
-      jQuery(document).on('keypress',function(e){
-        scope.$apply(scope.keyPressed(e))
+      jQuery(document).on('keypress',function(e){ 
+        scope.$apply(scope.init(attrs.modalId, attrs.trigger));
+        scope.$apply(scope.keyPressed(e));
       });
     }
   }

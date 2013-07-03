@@ -1,5 +1,4 @@
 <div class="container-fluid">
-  <button class="btn btn-primary" ng-click="init();">Jarvis {{ keyCode }}</button>
   <div id="jarvisModal" class="modal hide fade" data-target="#jarvisModal">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -7,9 +6,18 @@
     </div>
     <div class="modal-body">
       <p>Hi Master, how can I help you?</p>
+      <div>
+        <span>Status: </span>
+        <span id="jarvisInfo">{{ info }}</span>
+      </div>
+      <div>
+        <span>Input Command: </span>
+        <span id="final_span" class="final"></span>
+        <span id="interim_span" class="interim"></span>
+      </div>
     </div>
     <div class="modal-footer">
-      <button class="btn btn-primary">Speak</button>
+      <button ng-click="inputVoiceCommand()" id="actionBtn" class="btn btn-primary">Speak</button>
     </div>
   </div>
 </div>
