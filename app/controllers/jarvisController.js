@@ -20,11 +20,13 @@ app.controller('JarvisController', function ($scope){
   $scope.info = info_messages.info_start;
   $scope.final_span;
   $scope.interim_span;
+  $scope.cnt = 0;
+  $scope.actionBtn = 'Speak'
 
-  $scope.keyPressed = function (e) {
+  $scope.keyPressed = function (e){
     var keyCode = e.which;
     if(keyCode == $scope.trigger){
-      $scope.show();
+      $scope.renderJarvis('show');
     }
   }
 
@@ -44,13 +46,16 @@ app.controller('JarvisController', function ($scope){
 
       $scope.recognition.onstart = function() {
         $scope.recognizing = true;
-        $('#actionBtn').html('Stop');
-        $('#jarvisInfo').html(info_messages.info_speak_now);
-        //$scope.info = info_messages.info_speak_now;
+        $scope.cnt = 0;
+        
+        $scope.actionBtn = 'Stop';
+        $scope.info = info_messages.info_speak_now;
+        
+        $scope.$apply();
         //console.log(info_messages.info_speak_now);
       };
 
-      $scope.recognition.onerror = function (event) {
+      $scope.recognition.onerror = function (event){
         if (event.error == 'no-speech') {
           $scope.info = info_messages.info_no_speech;
           $scope.ignore_onend = true;
@@ -60,7 +65,7 @@ app.controller('JarvisController', function ($scope){
           $scope.ignore_onend = true;
         }
         if (event.error == 'not-allowed') {
-          if (event.timeStamp - $scope.start_timestamp < 100) {
+          if (event.timeStamp - $scope.start_timestamp < 100){
             $scope.info = info_messages.info_blocked;
           } else {
             $scope.info = info_messages.info_denied;
@@ -69,8 +74,9 @@ app.controller('JarvisController', function ($scope){
         }
       };
 
-      $scope.recognition.onend = function () {
+      $scope.recognition.onend = function (){
         $scope.recognizing = false;
+
         if ($scope.ignore_onend) {
           return;
         }
@@ -94,9 +100,11 @@ app.controller('JarvisController', function ($scope){
 
         $('#actionBtn').html('Speak');
 
+        $scope.execute();
+
       };
 
-      $scope.recognition.onresult = function(event) {
+      $scope.recognition.onresult = function (event){
         
         $('#jarvisInfo').html(info_messages.info_capturing);
         //$scope.info = info_messages.info_capturing;
@@ -109,6 +117,14 @@ app.controller('JarvisController', function ($scope){
             $scope.final_transcript += event.results[i][0].transcript;
           } else {
             interim_transcript += event.results[i][0].transcript;
+
+            var cnt = interim_transcript.split(' ');
+            $scope.cnt = cnt.length;
+            
+            if($scope.cnt == 3){
+              $scope.inputVoiceCommand();
+            } 
+
           }
         }
 
@@ -116,9 +132,7 @@ app.controller('JarvisController', function ($scope){
         $scope.final_span = linebreak($scope.final_transcript);
         $scope.interim_span = linebreak(interim_transcript);
         
-        $('#final_span').html($scope.final_span);
-        $('#interim_span').html($scope.interim_span);
-
+        $scope.$apply();
         //console.log($scope.final_transcript);
         //console.log($scope.interim_span);
       };
@@ -126,8 +140,8 @@ app.controller('JarvisController', function ($scope){
     }
   }
 
-  $scope.show = function (){
-    $($scope.modalId).modal();
+  $scope.renderJarvis = function (status){
+    $($scope.modalId).modal(status);
   }
 
   $scope.inputVoiceCommand = function (){
@@ -149,14 +163,38 @@ app.controller('JarvisController', function ($scope){
 
   }
 
+  $scope.execute = function (){
+    var command = $scope.final_span.split(' ');
+    var executer = command[0].toLowerCase();
+    var action = command[1];
+    var element = command[2];
+
+    switch (executer){
+      case 'jarvis':
+        if (action == 'show'){
+          $scope.renderJarvis('hide');
+          window.location = '#/' + element;
+        }
+        break; 
+
+      case 'jack':
+        alert('Jack here my lord! Your wish is my command...');
+        console.log('Jack here chicho!!!');
+        break;
+      
+      default: 
+        console.log('Command not recognized');
+    }
+  }
+
   //helper functions
-  function linebreak(s) {
+  function linebreak (s){
     var two_line = /\n\n/g;
     var one_line = /\n/g;
     return s.replace(two_line, '<p></p>').replace(one_line, '<br>');
   }
 
-  function capitalize(s) {
+  function capitalize (s){
     var first_char = /\S/;
     return s.replace(first_char, function(m) { return m.toUpperCase(); });
   }

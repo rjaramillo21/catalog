@@ -11,13 +11,13 @@
         <span id="jarvisInfo">{{ info }}</span>
       </div>
       <div>
-        <span>Input Command: </span>
-        <span id="final_span" class="final"></span>
-        <span id="interim_span" class="interim"></span>
+        <span>Input Command ( {{ cnt }} ): </span>
+        <span id="final_span" class="final">{{ final_span }}</span>
+        <span id="interim_span" class="interim">{{ interim_span }}</span>
       </div>
     </div>
     <div class="modal-footer">
-      <button ng-click="inputVoiceCommand()" id="actionBtn" class="btn btn-primary">Speak</button>
+      <button ng-click="inputVoiceCommand()" id="actionBtn" class="btn btn-primary">{{ actionBtn }}</button>
     </div>
   </div>
 </div>

@@ -12,5 +12,10 @@ app.config(function ($routeProvider) {
     	templateUrl: './app/partials/skills.html'
     })
 
+    .when('/receipts', {
+      controller: 'ReceiptsController',
+      templateUrl: './app/partials/receipts.html'
+    })
+
     .otherwise({ redirectTo: '/topics' });
 });
